@@ -1,0 +1,88 @@
+<nav class="navbar navbar-light bg-light">
+  <span class=" p-l-55 p-r-55 p-t-65 p-b-54">
+    {{ user() }}
+  </span>
+  <span class="float-r p-r-20">
+    <button (click)="onLogout()">
+      Cerrar Sesión
+    </button>
+  </span>
+</nav>
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('../../../../assets/images/88.jpg');">
+      <div class="wrap-login100 p-l-10 p-r-10 p-t-12 p-b-10">
+        <h1>Conversor UF a CLP</h1>
+        <br>
+        <div class="wrap-login100 p-l-25 p-r-75 p-t-65 p-b-54">
+          <form class="login100-form" 
+            autocomplete="off"
+            [formGroup]="convertForm"
+            (ngSubmit)="convert()" >
+          
+            <div class="wrap-input100">
+              <span class="label-input100">Cantidad de UF</span>
+              <input class="input100"
+              type="text"
+              formControlName="ufquantity"
+              placeholder="Ingrese cantidad de UF">
+              <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 m-b-23">
+              <span class="label-input100">Fecha</span>
+              <input class="input100"
+                    type="date"
+                    formControlName="dateToConvert"
+                    placeholder="Fecha">
+              <span class="focus-input100"></span>
+            </div>
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                  <div class="login100-form-bgbtn"></div>
+                  <button class="login100-form-btn"
+                          [disabled]="convertForm.invalid"
+                          type="submit">
+                      Convertir
+                  </button>
+              </div>
+          </div>
+          </form>
+        </div>      
+      </div>
+      &nbsp;&nbsp;
+      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+
+        <h1>Resultado Conversion</h1>
+        <br><br>
+        <div class="wrap-input100">
+          <span class="label-input100">Monto Conversión</span>
+          <span class="label-input100">{{ dataConverted()?.convetionAmount }}</span>
+        </div>
+        <br>
+        <div class="wrap-input100">
+          <span class="label-input100">Valor de la Moneda</span>
+          <span class="label-input100">{{ dataConverted()?.UFValue }}</span>
+        </div>
+        <br>
+        <div class="wrap-input100">
+          <span class="label-input100">Fecha de Conversion</span>
+          <span class="label-input100">{{ dataConverted()?.convertionDate }}</span>
+        </div>
+        <br>
+        <div class="wrap-input100">
+          <span class="label-input100">Monto</span>
+          <span class="label-input100">{{ dataConverted()?.amount }}</span>
+        </div>
+        
+        <br>
+        <!-- <span routerLink="/auth/login">Ir a login</span> -->
+        <div  *ngIf = "role()" >
+          <button (click)="onLogout()">
+           {{role()}}
+          </button>
+          
+        </div>
+      </div>
+  </div>
+</div>
+
+
